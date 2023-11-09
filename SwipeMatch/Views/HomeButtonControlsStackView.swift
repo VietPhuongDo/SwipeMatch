@@ -12,7 +12,7 @@ class HomeButtonControlsStackView: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         distribution = .fillEqually
-        heightAnchor.constraint(equalToConstant: 100).isActive = true
+        heightAnchor.constraint(equalToConstant: 75).isActive = true
         axis = .horizontal
         
         //button in bottom bar
