@@ -20,7 +20,6 @@ class HomeController: UIViewController {
             Advertiser(title: "Delicious and Refreshing", brandName: "Cocacola", posterName: "advertise1"),
             User(name: "Kelly", age: 20, profession: "Đì chây", imageNames: ["kelly1","kelly2","kelly3"])
         ]
-        
         let viewModels = produce.map({return $0.toCardViewModel()})
         return viewModels
     }()
@@ -30,11 +29,17 @@ class HomeController: UIViewController {
         // Do any additional setup after loading the view.
         setupLayout()
         setupCards()
+        topStackView.settingButton.addTarget(self, action: #selector(handleSetting), for: .touchUpInside)
+    }
+    
+    @objc func handleSetting(){
+        let registrationController = RegistrationController()
+        registrationController.modalPresentationStyle = .fullScreen
+        present(registrationController, animated: true)
     }
     
     //MARK: - Setup card
     fileprivate func setupCards(){
-        print("Setting up cards")
         cardViewModel.forEach { (cardVM) in
             let cardView = CardView(frame: .zero)
             cardView.cardViewModel = cardVM

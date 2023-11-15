@@ -28,6 +28,7 @@ class CardView: UIView {
                 imageStackBar.addArrangedSubview(v)
             }
             imageStackBar.arrangedSubviews.first?.backgroundColor = .white
+            setupIndexObserver()
         }
     }
     
@@ -76,29 +77,34 @@ class CardView: UIView {
     fileprivate func setupImageStackBar(){
         addSubview(imageStackBar)
         imageStackBar.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
-        imageStackBar.spacing = 4
+        imageStackBar.spacing = 5
         imageStackBar.distribution = .fillEqually
         
     }
     
     //MARK: - Tap Gesture
-    var imageIndex = 0
     @objc fileprivate func handleTap(gesture: UITapGestureRecognizer){
+        print("Handling and tapping picture")
         let tapLocation = gesture.location(in: nil)
         let shouldUpdatePhoto = tapLocation.x > self.frame.width / 2 ? true : false
-        if shouldUpdatePhoto {
-            imageIndex = min (imageIndex+1 , cardViewModel.imageNames.count-1)
+        if shouldUpdatePhoto{
+            cardViewModel.toNextImage()
         }
         else{
-            imageIndex = max (imageIndex-1, 0)
+            cardViewModel.toPreviousImage()
         }
-        
-        let nowImage = cardViewModel.imageNames[imageIndex]
-        imageView.image = UIImage(named: nowImage)
-        imageStackBar.arrangedSubviews.forEach { (i) in
-            i.backgroundColor = .init(white: 0, alpha: 0.1)
+            }
+    
+    fileprivate func setupIndexObserver(){
+        cardViewModel.imageIndexObserver = { (idx, img) in
+            self.imageView.image = img
+            self.imageStackBar.arrangedSubviews.forEach { (v) in
+                v.backgroundColor = .init(white: 0, alpha: 0.1)
+            }
+            (0..<idx+1).forEach { (i) in
+                self.imageStackBar.arrangedSubviews[i].backgroundColor = .white
+            }
         }
-        imageStackBar.arrangedSubviews[imageIndex].backgroundColor = .white
     }
     
     //MARK: - Pan Gesture
