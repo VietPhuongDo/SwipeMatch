@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseStorage
 import FirebaseAuth
 import JGProgressHUD
 
@@ -97,10 +99,13 @@ class RegistrationController: UIViewController {
         return button
     }()
     
+    let registerHUD = JGProgressHUD(style: .dark)
     // register on firebase
     @objc fileprivate func handleRegisterFirebase(){
         self.handleTapDismiss()
-        print("Register on Firebase")
+        registerHUD.textLabel.text = "Registering..."
+        registerHUD.show(in: view)
+        registerHUD.dismiss(afterDelay: 1)
         guard let gmail = gmailTextField.text else {
             return
         }
@@ -114,19 +119,26 @@ class RegistrationController: UIViewController {
                 return
             }
             print("Successfully register user:",res?.user.uid ?? "")
+            //Upload image to Firebase Storage
+            let filename = UUID().uuidString
+            let ref = Storage.storage().reference(withPath: "/images/\(filename)")
+            
+
+            
         }
     }
     
     // show error on screen
     fileprivate func showHUDWithError(error: Error){
+        registerHUD.dismiss(animated: true)
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Failed registration"
         hud.detailTextLabel.text = error.localizedDescription
         hud.show(in: self.view)
-        hud.dismiss(afterDelay: 4)
+        hud.dismiss(afterDelay: 3)
     }
     
-//MARK: -setup layout
+//MARK: - setup layout
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -175,11 +187,9 @@ class RegistrationController: UIViewController {
             }
             
             // remove observer to have a retain cycle
-            override func viewWillDisappear(_ animated: Bool) {
-                super.viewWillDisappear(animated)
-                NotificationCenter.default.removeObserver(self)
-            }
-            
+            deinit {
+            NotificationCenter.default.removeObserver(self)
+        }
             @objc fileprivate func handleKeyboardShow(notification: Notification){
                 guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else{
                     return
