@@ -27,7 +27,8 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
 }
 
 class RegistrationController: UIViewController {
-    // Setup UI
+    
+    //MARK: - PhotoPicker button and view
     let photoPickerButton:UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .white
@@ -41,7 +42,8 @@ class RegistrationController: UIViewController {
         button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         return button
     }()
-    // present pickerPhotoView
+    
+    //TextField
     @objc fileprivate func handleSelectPhoto(){
         let photoPickerController = UIImagePickerController()
         photoPickerController.delegate = self
@@ -84,7 +86,8 @@ class RegistrationController: UIViewController {
             registrationViewModel.gmail = textField.text
         }
     }
-
+//MARK: - Register button and register on firebase
+    // register button
     let registerButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Register", for: .normal)
@@ -98,33 +101,17 @@ class RegistrationController: UIViewController {
         button.addTarget(self, action: #selector(handleRegisterFirebase), for: .touchUpInside)
         return button
     }()
-    
     let registerHUD = JGProgressHUD(style: .dark)
+    
     // register on firebase
     @objc fileprivate func handleRegisterFirebase(){
         self.handleTapDismiss()
-        registerHUD.textLabel.text = "Registering..."
-        registerHUD.show(in: view)
-        registerHUD.dismiss(afterDelay: 1)
-        guard let gmail = gmailTextField.text else {
-            return
-        }
-        guard let password = passwordTextField.text else{
-            return
-        }
-        Auth.auth().createUser(withEmail: gmail, password: password) { (res, err) in
+        // create user with gmail and password
+        registrationViewModel.performRegistration{ [weak self] (err) in
             if let err = err{
-                print(err)
-                self.showHUDWithError(error: err)
+                self?.showHUDWithError(error: err)
                 return
             }
-            print("Successfully register user:",res?.user.uid ?? "")
-            //Upload image to Firebase Storage
-            let filename = UUID().uuidString
-            let ref = Storage.storage().reference(withPath: "/images/\(filename)")
-            
-
-            
         }
     }
     
@@ -138,7 +125,7 @@ class RegistrationController: UIViewController {
         hud.dismiss(afterDelay: 3)
     }
     
-//MARK: - setup layout
+//MARK: - Setup layout
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -149,7 +136,7 @@ class RegistrationController: UIViewController {
             setupRegistrationViewModelObserver()
         }
     
-    //Valid Register
+//MARK: - Valid Register and observer
     let registrationViewModel = RegistrationViewModel()
     fileprivate func setupRegistrationViewModelObserver() {
         registrationViewModel.bindableIsFormValid.bind { [unowned self] (isFormValid) in
@@ -166,6 +153,16 @@ class RegistrationController: UIViewController {
         
         registrationViewModel.bindableImage.bind { [unowned self] (img) in
             self.photoPickerButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        
+        registrationViewModel.bindableIsRegistering.bind { [unowned self] (isRegistering) in
+            if isRegistering == true{
+                self.registerHUD.textLabel.text = "Registering..."
+                self.registerHUD.show(in: view)
+            }
+            else{
+                self.registerHUD.dismiss()
+            }
         }
 
     }
@@ -190,6 +187,7 @@ class RegistrationController: UIViewController {
             deinit {
             NotificationCenter.default.removeObserver(self)
         }
+            // handle keyboard show
             @objc fileprivate func handleKeyboardShow(notification: Notification){
                 guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else{
                     return
@@ -210,7 +208,8 @@ class RegistrationController: UIViewController {
                 }
             }
            
-    //MARK: - Add view and gradient layer
+    //MARK: - Add stackView and gradient layer
+    //Setup stackView
         lazy var stackView = UIStackView(arrangedSubviews: [photoPickerButton,usernameTextField,gmailTextField,passwordTextField,registerButton])
         
         fileprivate func setupLayout(){
@@ -221,7 +220,8 @@ class RegistrationController: UIViewController {
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             
         }
-
+    
+    //Setup gradientLayer
         fileprivate func setupGradient(){
             let gradientLayer = CAGradientLayer()
             let color1 = #colorLiteral(red: 1, green: 0.7700536847, blue: 0.7738657594, alpha: 1)
