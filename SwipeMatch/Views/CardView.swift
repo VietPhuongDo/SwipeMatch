@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CardView: UIView {
     //Encapsulation
@@ -18,7 +19,10 @@ class CardView: UIView {
     var cardViewModel: CardViewModel!{
         didSet{
             let imageName = cardViewModel.imageNames.first ?? ""
-            imageView.image = UIImage(named: imageName)
+            if let url = URL(string: imageName){
+                imageView.sd_setImage(with: url)
+            }
+            
             informationLabel.attributedText = cardViewModel.attributedString
             informationLabel.textAlignment = cardViewModel.textAlignment
             
@@ -84,7 +88,7 @@ class CardView: UIView {
     
     //MARK: - Tap Gesture
     @objc fileprivate func handleTap(gesture: UITapGestureRecognizer){
-        print("Handling and tapping picture")
+        print("Handling and tapping photo")
         let tapLocation = gesture.location(in: nil)
         let shouldUpdatePhoto = tapLocation.x > self.frame.width / 2 ? true : false
         if shouldUpdatePhoto{
@@ -96,8 +100,10 @@ class CardView: UIView {
             }
     
     fileprivate func setupIndexObserver(){
-        cardViewModel.imageIndexObserver = { (idx, img) in
-            self.imageView.image = img
+        cardViewModel.imageIndexObserver = { (idx, imgURL) in
+            if let url = URL(string: imgURL ?? ""){
+                self.imageView.sd_setImage(with: url)
+            }
             self.imageStackBar.arrangedSubviews.forEach { (v) in
                 v.backgroundColor = .init(white: 0, alpha: 0.1)
             }
