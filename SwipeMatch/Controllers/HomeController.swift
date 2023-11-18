@@ -30,9 +30,10 @@ class HomeController: UIViewController {
     }
     
     @objc fileprivate func handleSettings(){
-        let registrastionController = RegistrationController()
-        registrastionController.modalPresentationStyle = .fullScreen
-        present(registrastionController, animated: true)
+        let settings = SettingsController()
+        let navController = UINavigationController(rootViewController: settings)
+        navController.modalPresentationStyle = .fullScreen
+        present(navController, animated: true)
     }
     
     @objc fileprivate func handleRefresh(){

@@ -20,6 +20,8 @@
 		D4818AB42AFE09A7003100ED /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4818AB32AFE09A7003100ED /* RegistrationController.swift */; };
 		D4818AB62AFE159F003100ED /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4818AB52AFE159F003100ED /* CustomTextField.swift */; };
 		D4818AB92B029206003100ED /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4818AB82B029206003100ED /* RegistrationViewModel.swift */; };
+		D48593112B083DA900CF5D4E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48593102B083DA900CF5D4E /* SettingsController.swift */; };
+		D48593132B08662200CF5D4E /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48593122B08662200CF5D4E /* SettingsCell.swift */; };
 		D4C69B522B034A1600CEDC82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4C69B512B034A1600CEDC82 /* GoogleService-Info.plist */; };
 		D4C69B542B0480BE00CEDC82 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C69B532B0480BE00CEDC82 /* Bindable.swift */; };
 		D4C69B572B04CAFA00CEDC82 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D4C69B562B04CAFA00CEDC82 /* JGProgressHUD */; };
@@ -70,6 +72,8 @@
 		D4818AB32AFE09A7003100ED /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		D4818AB52AFE159F003100ED /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		D4818AB82B029206003100ED /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		D48593102B083DA900CF5D4E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		D48593122B08662200CF5D4E /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		D4B8B80F2B065D410058BAD1 /* SwipeMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C69B512B034A1600CEDC82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4C69B532B0480BE00CEDC82 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				D4181DCD2AF828A000865090 /* TopNavigationStackView.swift */,
 				D4181DCF2AF8374A00865090 /* CardView.swift */,
 				D4818AB52AFE159F003100ED /* CustomTextField.swift */,
+				D48593122B08662200CF5D4E /* SettingsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,8 +182,8 @@
 			children = (
 				D4181DB72AF4D07800865090 /* HomeController.swift */,
 				D4818AB32AFE09A7003100ED /* RegistrationController.swift */,
-				D4818AB82B029206003100ED /* RegistrationViewModel.swift */,
 				D4C69B532B0480BE00CEDC82 /* Bindable.swift */,
+				D48593102B083DA900CF5D4E /* SettingsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 		D4F21D172AFBF38B000C73CE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				D4818AB82B029206003100ED /* RegistrationViewModel.swift */,
 				D4F21D182AFBF39A000C73CE /* CardViewModel.swift */,
 			);
 			path = ViewModels;
@@ -309,8 +315,10 @@
 				D4C69B542B0480BE00CEDC82 /* Bindable.swift in Sources */,
 				D4818AB62AFE159F003100ED /* CustomTextField.swift in Sources */,
 				D4818AB92B029206003100ED /* RegistrationViewModel.swift in Sources */,
+				D48593112B083DA900CF5D4E /* SettingsController.swift in Sources */,
 				D4181DB62AF4D07800865090 /* SceneDelegate.swift in Sources */,
 				D4181DCC2AF81EC100865090 /* HomeButtonControlsStackView.swift in Sources */,
+				D48593132B08662200CF5D4E /* SettingsCell.swift in Sources */,
 				D4F21D192AFBF39A000C73CE /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
