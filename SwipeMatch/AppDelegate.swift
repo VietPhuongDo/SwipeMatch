@@ -16,10 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        let db = Firestore.firestore()
-        let settings = db.settings
-        settings.isPersistenceEnabled = true  // Enable local cache if needed
-        db.settings = settings
         
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)

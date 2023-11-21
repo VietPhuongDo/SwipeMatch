@@ -28,6 +28,8 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
 
 class RegistrationController: UIViewController {
     
+    var delegate: LoginControllerDelegate?
+    
     //MARK: - PhotoPicker button and view
     let photoPickerButton:UIButton = {
         let button = UIButton(type: .system)
@@ -98,20 +100,24 @@ class RegistrationController: UIViewController {
         button.isEnabled = false
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.layer.cornerRadius = 25
-        button.addTarget(self, action: #selector(handleRegisterFirebase), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         return button
     }()
     let registerHUD = JGProgressHUD(style: .dark)
     
     // register on firebase
-    @objc fileprivate func handleRegisterFirebase(){
+    @objc fileprivate func handleRegister() {
         self.handleTapDismiss()
-        // create user with gmail and password
-        registrationViewModel.performRegistration{ [weak self] (err) in
-            if let err = err{
+        registrationViewModel.performRegistration { [weak self] (err) in
+            if let err = err {
                 self?.showHUDWithError(error: err)
                 return
             }
+            print("Finished registering our user")
+            
+            self?.dismiss(animated: true, completion: {
+                self?.delegate?.didFinishLoggingIn()
+            })
         }
     }
     
@@ -123,6 +129,22 @@ class RegistrationController: UIViewController {
         hud.detailTextLabel.text = error.localizedDescription
         hud.show(in: self.view)
         hud.dismiss(afterDelay: 3)
+    }
+    
+    //Go to login
+    let goToLoginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Go to login", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        button.addTarget(self, action: #selector(handleToLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleToLogin(){
+        let loginController = LoginController()
+        loginController.delegate = delegate
+        navigationController?.pushViewController(loginController, animated: true)
     }
     
 //MARK: - Setup layout
@@ -219,6 +241,8 @@ class RegistrationController: UIViewController {
             stackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             
+            view.addSubview(goToLoginButton)
+            goToLoginButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
         }
     
     //Setup gradientLayer

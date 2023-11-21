@@ -60,17 +60,17 @@ class RegistrationViewModel {
                 }
                 self.bindableIsRegistering.value = false
                 
-                let imageURL = url?.absoluteString ?? ""
-                self.saveInformationToFirestore(imageURL: imageURL,completion: completion)
+                let imageURL1 = url?.absoluteString ?? ""
+                self.saveInformationToFirestore(imageURL1: imageURL1,completion: completion)
                 completion(nil)
             })
             
         })
     }
     
-    fileprivate func saveInformationToFirestore(imageURL: String,completion: @escaping (Error?) -> ()){
+    fileprivate func saveInformationToFirestore(imageURL1: String,completion: @escaping (Error?) -> ()){
         let uid = Auth.auth().currentUser?.uid  ?? ""
-        let docData = ["username":username ?? "", "uid":uid , "imageURL":imageURL]
+        let docData = ["username":username ?? "", "uid":uid , "imageURL1":imageURL1]
         Firestore.firestore().collection("users").document(uid).setData(docData){ (err) in
             if let err = err{
                 completion(err)

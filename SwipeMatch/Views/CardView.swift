@@ -88,7 +88,6 @@ class CardView: UIView {
     
     //MARK: - Tap Gesture
     @objc fileprivate func handleTap(gesture: UITapGestureRecognizer){
-        print("Handling and tapping photo")
         let tapLocation = gesture.location(in: nil)
         let shouldUpdatePhoto = tapLocation.x > self.frame.width / 2 ? true : false
         if shouldUpdatePhoto{

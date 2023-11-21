@@ -8,9 +8,14 @@
 import UIKit
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseAuth
 import JGProgressHUD
 
-class HomeController: UIViewController {
+class HomeController: UIViewController, SettingsControllerDelegate, LoginControllerDelegate{
+    
+    func didSaveSettings() {
+        fetchCurrentUser()
+    }
     
     let topStackView = TopNavigationStackView()
     let cardsDeckView = UIView()
@@ -25,31 +30,62 @@ class HomeController: UIViewController {
         topStackView.settingButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         bottomControl.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         
-        setupFirestoreUsersCard()
-        fetchUserFromFirestore()
+        fetchCurrentUser()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //kick out the user
+        if Auth.auth().currentUser == nil {
+            let registrationController = RegistrationController()
+            registrationController.delegate = self
+            let navController = UINavigationController(rootViewController: registrationController)
+            navController.modalPresentationStyle = .fullScreen
+            present(navController, animated: true)
+        }
+    }
+    
+    fileprivate var user: User?
+    func fetchCurrentUser(){
+        guard let uid = Auth.auth().currentUser?.uid else {return }
+        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
+            if let err = err{
+                print(err)
+                return
+            }
+            
+            guard let dictionary = snapshot?.data() else {return }
+            self.user = User(dictionary: dictionary)
+            self.fetchUserFromFirestore()
+        }
     }
     
     @objc fileprivate func handleSettings(){
         let settings = SettingsController()
         let navController = UINavigationController(rootViewController: settings)
+        settings.delegate = self
         navController.modalPresentationStyle = .fullScreen
         present(navController, animated: true)
+    }
+    
+    func didFinishLoggingIn() {
+        fetchCurrentUser()
     }
     
     @objc fileprivate func handleRefresh(){
         fetchUserFromFirestore()
     }
     
+    //Fetch from firestore
     var lastFetchedUser: User?
-    
     fileprivate func fetchUserFromFirestore(){
+        guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else {return}
+        
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Fetching more users"
         hud.show(in: view)
-        let query = Firestore.firestore().collection("users")
-            .order(by: "uid")
-            .start(after: [lastFetchedUser?.uid ?? ""])
-            .limit(to: 2)
+        let query = Firestore.firestore().collection("users").whereField("age", isLessThanOrEqualTo: maxAge).whereField("age", isGreaterThanOrEqualTo: minAge)
+            
         query.getDocuments { (snapshot, err) in
             hud.dismiss(animated: true)
             if let err = err{
