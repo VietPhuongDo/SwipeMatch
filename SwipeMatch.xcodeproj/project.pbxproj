@@ -25,6 +25,7 @@
 		D485931B2B0C325200CF5D4E /* AgeRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485931A2B0C325200CF5D4E /* AgeRangeCell.swift */; };
 		D485931E2B0C9C5500CF5D4E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485931D2B0C9C5500CF5D4E /* LoginController.swift */; };
 		D48593202B0C9C6400CF5D4E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485931F2B0C9C6400CF5D4E /* LoginViewModel.swift */; };
+		D48593252B0F8EC600CF5D4E /* UserDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48593242B0F8EC600CF5D4E /* UserDetailsController.swift */; };
 		D4C69B522B034A1600CEDC82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4C69B512B034A1600CEDC82 /* GoogleService-Info.plist */; };
 		D4C69B542B0480BE00CEDC82 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C69B532B0480BE00CEDC82 /* Bindable.swift */; };
 		D4C69B572B04CAFA00CEDC82 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D4C69B562B04CAFA00CEDC82 /* JGProgressHUD */; };
@@ -80,6 +81,7 @@
 		D485931A2B0C325200CF5D4E /* AgeRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCell.swift; sourceTree = "<group>"; };
 		D485931D2B0C9C5500CF5D4E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D485931F2B0C9C6400CF5D4E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D48593242B0F8EC600CF5D4E /* UserDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsController.swift; sourceTree = "<group>"; };
 		D4B8B80F2B065D410058BAD1 /* SwipeMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C69B512B034A1600CEDC82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4C69B532B0480BE00CEDC82 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
@@ -184,6 +186,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		D48593232B0F8EB800CF5D4E /* User Details */ = {
+			isa = PBXGroup;
+			children = (
+				D48593242B0F8EC600CF5D4E /* UserDetailsController.swift */,
+			);
+			path = "User Details";
+			sourceTree = "<group>";
+		};
 		D4F21D132AF9FB1A000C73CE /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +206,7 @@
 		D4F21D162AFBF2F0000C73CE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D48593232B0F8EB800CF5D4E /* User Details */,
 				D485931C2B0C9C4600CF5D4E /* Login */,
 				D4181DB72AF4D07800865090 /* HomeController.swift */,
 				D4818AB32AFE09A7003100ED /* RegistrationController.swift */,
@@ -328,6 +339,7 @@
 				D4181DC92AF4D55000865090 /* Extension+UIView.swift in Sources */,
 				D485931B2B0C325200CF5D4E /* AgeRangeCell.swift in Sources */,
 				D4F21D152AF9FB2A000C73CE /* User.swift in Sources */,
+				D48593252B0F8EC600CF5D4E /* UserDetailsController.swift in Sources */,
 				D4818AB42AFE09A7003100ED /* RegistrationController.swift in Sources */,
 				D4181DCE2AF828A000865090 /* TopNavigationStackView.swift in Sources */,
 				D4C69B542B0480BE00CEDC82 /* Bindable.swift in Sources */,

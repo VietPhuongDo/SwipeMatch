@@ -8,7 +8,13 @@
 import UIKit
 import SDWebImage
 
+protocol CardViewDelegate{
+    func didTapMoreInfo()
+}
+
 class CardView: UIView {
+    var delegate: CardViewDelegate?
+    
     //Encapsulation
     fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "kelly3"))
     let gradientLayer = CAGradientLayer()
@@ -52,18 +58,26 @@ class CardView: UIView {
         layer.cornerRadius = 10
         clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
+        
         addSubview(imageView)
         imageView.fillSuperview()
+        
         // add stackImageStackBar
         setupImageStackBar()
+        
         // add gradient layer
         addGradientLayer()
+        
         //add label
         addSubview(informationLabel)
         informationLabel.anchor(top: nil, leading: self.leadingAnchor, bottom: self.bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 0))
         informationLabel.font = UIFont.systemFont(ofSize: 34, weight: .heavy)
         informationLabel.textColor = .white
         informationLabel.numberOfLines = 0
+        
+        //add more info button
+        addSubview(moreInfoButton)
+        moreInfoButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 20, right: 20), size: .init(width: 60, height: 60))
     }
     
     //MARK: - GradientLayer
@@ -110,6 +124,18 @@ class CardView: UIView {
                 self.imageStackBar.arrangedSubviews[i].backgroundColor = .white
             }
         }
+    }
+    
+    //MARK: More info button
+    let moreInfoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "info_icon")!.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleMoreInfo), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleMoreInfo(){
+        delegate?.didTapMoreInfo()
     }
     
     //MARK: - Pan Gesture

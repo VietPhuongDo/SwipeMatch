@@ -36,7 +36,7 @@ struct User: ProduceCardViewModel {
     }
     
     func toCardViewModel() -> CardViewModel {
-        let attributeText = NSMutableAttributedString(string: "\(name!)", attributes: [.font:UIFont.systemFont(ofSize: 32, weight: .heavy)])
+        let attributeText = NSMutableAttributedString(string: "\(name!)", attributes: [.font:UIFont.systemFont(ofSize: 28, weight: .heavy)])
         
         let ageString = age != nil ? "\(age!)" : "N/A"
         attributeText.append(NSMutableAttributedString(string: " \(ageString)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
