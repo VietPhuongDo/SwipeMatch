@@ -112,8 +112,9 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         cardView.fillSuperview()
     }
     
-    func didTapMoreInfo() {
+    func didTapMoreInfo(cardViewModel: CardViewModel) {
         let userDetailsController = UserDetailsController()
+        userDetailsController.cardViewModel = cardViewModel
         userDetailsController.modalPresentationStyle = .fullScreen
         present(userDetailsController, animated: true)
     }

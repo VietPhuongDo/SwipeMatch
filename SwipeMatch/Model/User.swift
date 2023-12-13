@@ -42,7 +42,7 @@ struct User: ProduceCardViewModel {
         attributeText.append(NSMutableAttributedString(string: " \(ageString)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
         
         let professionString = (profession != nil) ? "\(profession!)" : "Not available"
-        attributeText.append(NSMutableAttributedString(string: "\n\(professionString)", attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
+        attributeText.append(NSMutableAttributedString(string: "\n\(professionString)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
         
         var imageURLs = [String]()
         if let url = imageURL1 {imageURLs.append(url)}

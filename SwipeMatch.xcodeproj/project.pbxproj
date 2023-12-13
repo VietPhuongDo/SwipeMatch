@@ -26,7 +26,7 @@
 		D485931E2B0C9C5500CF5D4E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485931D2B0C9C5500CF5D4E /* LoginController.swift */; };
 		D48593202B0C9C6400CF5D4E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485931F2B0C9C6400CF5D4E /* LoginViewModel.swift */; };
 		D48593252B0F8EC600CF5D4E /* UserDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48593242B0F8EC600CF5D4E /* UserDetailsController.swift */; };
-		D4C69B522B034A1600CEDC82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4C69B512B034A1600CEDC82 /* GoogleService-Info.plist */; };
+		D4AA9DC52B1B2B46008ECCD0 /* SwipingPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA9DC42B1B2B45008ECCD0 /* SwipingPhotoViewController.swift */; };
 		D4C69B542B0480BE00CEDC82 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C69B532B0480BE00CEDC82 /* Bindable.swift */; };
 		D4C69B572B04CAFA00CEDC82 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D4C69B562B04CAFA00CEDC82 /* JGProgressHUD */; };
 		D4C69B5B2B04CB7400CEDC82 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D4C69B5A2B04CB7400CEDC82 /* SDWebImage */; };
@@ -56,6 +56,7 @@
 		D4C69B8E2B04CF3100CEDC82 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D4C69B8D2B04CF3100CEDC82 /* FirebaseRemoteConfigSwift */; };
 		D4C69B902B04CF3100CEDC82 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D4C69B8F2B04CF3100CEDC82 /* FirebaseStorage */; };
 		D4C69B922B04CF3100CEDC82 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D4C69B912B04CF3100CEDC82 /* FirebaseStorageCombine-Community */; };
+		D4E7D6702B29C4BF000B7842 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4E7D66F2B29C4BF000B7842 /* GoogleService-Info.plist */; };
 		D4F21D152AF9FB2A000C73CE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F21D142AF9FB2A000C73CE /* User.swift */; };
 		D4F21D192AFBF39A000C73CE /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F21D182AFBF39A000C73CE /* CardViewModel.swift */; };
 		D4F21D1D2AFCAEF7000C73CE /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F21D1C2AFCAEF7000C73CE /* Advertiser.swift */; };
@@ -82,9 +83,10 @@
 		D485931D2B0C9C5500CF5D4E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D485931F2B0C9C6400CF5D4E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D48593242B0F8EC600CF5D4E /* UserDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsController.swift; sourceTree = "<group>"; };
+		D4AA9DC42B1B2B45008ECCD0 /* SwipingPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotoViewController.swift; sourceTree = "<group>"; };
 		D4B8B80F2B065D410058BAD1 /* SwipeMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4C69B512B034A1600CEDC82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4C69B532B0480BE00CEDC82 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		D4E7D66F2B29C4BF000B7842 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4F21D142AF9FB2A000C73CE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D4F21D182AFBF39A000C73CE /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		D4F21D1C2AFCAEF7000C73CE /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
@@ -147,9 +149,9 @@
 				D4181DC72AF4D54000865090 /* Extension */,
 				D4181DB32AF4D07800865090 /* AppDelegate.swift */,
 				D4181DB52AF4D07800865090 /* SceneDelegate.swift */,
+				D4E7D66F2B29C4BF000B7842 /* GoogleService-Info.plist */,
 				D4181DB92AF4D07800865090 /* Main.storyboard */,
 				D4181DBC2AF4D07A00865090 /* Assets.xcassets */,
-				D4C69B512B034A1600CEDC82 /* GoogleService-Info.plist */,
 				D4181DBE2AF4D07A00865090 /* LaunchScreen.storyboard */,
 				D4181DC12AF4D07A00865090 /* Info.plist */,
 			);
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				D48593242B0F8EC600CF5D4E /* UserDetailsController.swift */,
+				D4AA9DC42B1B2B45008ECCD0 /* SwipingPhotoViewController.swift */,
 			);
 			path = "User Details";
 			sourceTree = "<group>";
@@ -319,7 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4181DC02AF4D07A00865090 /* LaunchScreen.storyboard in Resources */,
-				D4C69B522B034A1600CEDC82 /* GoogleService-Info.plist in Resources */,
+				D4E7D6702B29C4BF000B7842 /* GoogleService-Info.plist in Resources */,
 				D4181DBD2AF4D07A00865090 /* Assets.xcassets in Resources */,
 				D4181DBB2AF4D07800865090 /* Main.storyboard in Resources */,
 			);
@@ -351,6 +354,7 @@
 				D4181DCC2AF81EC100865090 /* HomeButtonControlsStackView.swift in Sources */,
 				D48593132B08662200CF5D4E /* SettingsCell.swift in Sources */,
 				D48593202B0C9C6400CF5D4E /* LoginViewModel.swift in Sources */,
+				D4AA9DC52B1B2B46008ECCD0 /* SwipingPhotoViewController.swift in Sources */,
 				D4F21D192AFBF39A000C73CE /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

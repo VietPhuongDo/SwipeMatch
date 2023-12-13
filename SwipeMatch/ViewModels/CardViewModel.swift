@@ -25,7 +25,7 @@ class CardViewModel{
     
     var imageIndex = 0{
         didSet{
-            let imageURL  = imageNames[imageIndex]
+            let imageURL = imageNames[imageIndex]
             imageIndexObserver?(imageIndex,imageURL)
         }
     }
